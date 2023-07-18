@@ -3,6 +3,7 @@ name: LoRa APRS iGate
 on:
   workflow_dispatch:
 
+jobs:
   hw_testing:
     name: Hardware Testing
     strategy:
