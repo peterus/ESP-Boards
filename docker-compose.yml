@@ -2,8 +2,7 @@ version: '3'
 
 services:
   runner_ttyUSB0:
-    build: .
-    image: github-action-runner-image
+    image: ghcr.io/peterus/esp-boards:main
     volumes:
       - ./locks:/locks
       - /dev:/dev
