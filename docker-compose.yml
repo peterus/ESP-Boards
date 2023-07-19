@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  runner_ttyUSB0:
+    build: .
+    image: github-action-runner-image
+    volumes:
+      - ./locks:/locks
+      - /dev:/dev
+    privileged: true
+    restart: always
+    environment:
+      - USER=peterus
+      - REPOSITORY=ESP-Boards
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - LABELS=ttyUSB0
+      - RUNNER_NAME=runner123
