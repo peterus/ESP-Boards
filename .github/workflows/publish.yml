@@ -12,6 +12,8 @@ env:
 jobs:
   changes:
     runs-on: ubuntu-latest
+    outputs:
+      docker: ${{ steps.changes.outputs.docker }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
