@@ -12,6 +12,7 @@ usb_ids = os.listdir(SERIAL_BY_ID)
 f = open('boards.json')
 boards = json.load(f)
 
+# reverse search do detect if we have a usb device which is not in the list
 found_boards = []
 for board in boards:
     if board['usb id'] in usb_ids:

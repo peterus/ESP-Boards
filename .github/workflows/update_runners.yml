@@ -1,0 +1,25 @@
+name: Update Runners
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '0 * * * *'
+
+
+jobs:
+  update:
+    name: Update Runners
+    runs-on: [self-hosted, main]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Install Dependencies
+        shell: bash
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install --upgrade -r requirements.txt
+      - name: Install Dependencies
+        shell: bash
+        run: python3 create_runner.py
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
