@@ -18,7 +18,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           pip install --upgrade -r requirements.txt
-      - name: Install Dependencies
+      - name: Update boards
         shell: bash
         run: python3 create_runner.py
         env:
