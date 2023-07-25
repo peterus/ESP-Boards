@@ -29,7 +29,11 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: 'lora-aprs/LoRa_APRS_iGate'
+      - name: List env
+        run: env
       - name: List Devices
-        run: pio device list 
+        run: pio device list
+      - name: List ports
+        run: ls /dev/tty*
       - name: PlatformIO Test
         run: pio test -vvv --upload-port /dev/serial/by-id/$USB_ID --test-port /dev/serial/by-id/$USB_ID
