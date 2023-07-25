@@ -8,8 +8,8 @@ jobs:
     name: Hardware Testing
     strategy:
       matrix:
-        usb_port: [ttyUSB0]
-    runs-on: [self-hosted, "${{ matrix.usb_port }}"]
+        boards: [TTGO_LORA32_V2]
+    runs-on: [self-hosted, "${{ matrix.boards }}"]
     steps:
       - uses: actions/cache@v3
         with:
@@ -32,5 +32,4 @@ jobs:
       - name: List Devices
         run: pio device list 
       - name: PlatformIO Test
-        if: always()
-        run: flock -w 600 --verbose /locks/pio-${{ matrix.usb_port }} -c "pio test -vvv --upload-port /dev/${{ matrix.usb_port }} --test-port /dev/${{ matrix.usb_port }}"
+        run: pio test -vvv --upload-port /dev/serial/by-id/$USB_ID --test-port /dev/serial/by-id/$USB_ID"
