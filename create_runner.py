@@ -54,8 +54,8 @@ def create_new_docker_container(client: docker.DockerClient, board: Board) -> No
     environment_cont.append(f"RUNNER_NAME={board.name}")
     environment_cont.append(f"CPP_DEFINES={board.cpp_defines}")
     environment_cont.append(f"USB_ID={board.usb_id}")
-    container = client.containers.run(docker_image, detach=True,
-                                      auto_remove=True, volumes=volumes, environment=environment_cont, name=board.name)
+    container = client.containers.run(docker_image, detach=True, auto_remove=True, privileged=True,
+                                      volumes=volumes, environment=environment_cont, name=board.name)
 
 
 def is_container_running(client: docker.DockerClient, board: Board) -> bool:

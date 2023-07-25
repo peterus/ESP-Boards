@@ -36,4 +36,4 @@ jobs:
       - name: List ports
         run: ls -al /dev/ttyUSB*
       - name: PlatformIO Test
-        run: pio test -vvv --upload-port /dev/serial/by-id/$USB_ID --test-port /dev/serial/by-id/$USB_ID
+        run: pio test -vv --upload-port /dev/serial/by-id/$USB_ID --test-port /dev/serial/by-id/$USB_ID
