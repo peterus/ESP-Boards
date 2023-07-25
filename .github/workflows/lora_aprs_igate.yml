@@ -33,7 +33,7 @@ jobs:
         run: env
       - name: List Devices
         run: pio device list
-      - name: List ports
-        run: ls -al /dev/ttyUSB*
+#      - name: List ports
+#        run: ls -al /dev/ttyUSB*
       - name: PlatformIO Test
         run: pio test -vv --upload-port /dev/board --test-port /dev/board
