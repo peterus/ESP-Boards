@@ -9,7 +9,7 @@ from pathlib import Path
 
 ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 environment = ["USER=peterus", "REPOSITORY=ESP-Boards", f"ACCESS_TOKEN={ACCESS_TOKEN}"]
-volumes = ["locks:/locks", "/dev:/dev"]
+volumes = ["locks:/locks"]
 docker_image = "ghcr.io/peterus/esp-boards:main"
 
 
@@ -54,7 +54,8 @@ def create_new_docker_container(client: docker.DockerClient, board: Board) -> No
     environment_cont.append(f"RUNNER_NAME={board.name}")
     environment_cont.append(f"CPP_DEFINES={board.cpp_defines}")
     environment_cont.append(f"USB_ID={board.usb_id}")
-    container = client.containers.run(docker_image, detach=True, auto_remove=True, privileged=True,
+    devices = [f"/dev/serial/by-id/{board.usb_id}:/dev/board"]
+    container = client.containers.run(docker_image, detach=True, auto_remove=True, devices=devices,
                                       volumes=volumes, environment=environment_cont, name=board.name)
 
 
