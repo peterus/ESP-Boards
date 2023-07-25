@@ -1,8 +1,14 @@
 [
   {
     "name": "EthernetBoard",
-    "usb id": "usb-1a86_USB_Serial-if00-port0",
-    "labels": "ESP32,LoRa,ETH,ETH_BOARD",
-    "cpp defines": "-DBOARD=ETH_BOARD"
+    "usb_id": "usb-1a86_USB_Serial-if00-port0",
+    "labels": "ESP32,LoRa,ETH,ETH_BOARD,LILYGO_POE_ETH_BOARD",
+    "cpp_defines": "-DBOARD=LILYGO_POE_ETH_BOARD"
+  },
+  {
+    "name": "Lilygo_TTGO_LoRa32_v2.1",
+    "usb_id": "usb-Silicon_Labs_CP2104_USB_to_UART_Bridge_Controller_02143966-if00-port0",
+    "labels": "ESP32,LoRa,LoRa32,TTGO_LORA32_V2",
+    "cpp_defines": "-DBOARD=TTGO_LORA32_V2"
   }
 ]
