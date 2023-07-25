@@ -15,7 +15,7 @@ echo $REG_TOKEN
 
 cd /home/docker/actions-runner
 
-./config.sh --url https://github.com/${USER}/${REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME} --labels ${LABELS} --ephemeral
+./config.sh --url https://github.com/${USER}/${REPOSITORY} --token ${REG_TOKEN} --name ${RUNNER_NAME} --labels ${LABELS}
 
 echo "USB_ID=$USB_ID" >> .env
 echo "RUNNER_NAME=$RUNNER_NAME" >> .env
