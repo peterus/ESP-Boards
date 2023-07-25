@@ -53,8 +53,7 @@ def create_new_docker_container(client: docker.DockerClient, board: Board) -> No
     environment_cont.append(f"LABELS={board.labels}")
     environment_cont.append(f"RUNNER_NAME={board.name}")
     environment_cont.append(f"CPP_DEFINES={board.cpp_defines}")
-    environment_cont.append(f"USB_ID={board.usb_id}")
-    devices = [f"/dev/serial/by-id/{board.usb_id}:/dev/board"]
+    devices = [f"/dev/serial/by-id/{board.usb_id}:/dev/ttyBoard"]
     container = client.containers.run(docker_image, detach=True, auto_remove=True, devices=devices,
                                       volumes=volumes, environment=environment_cont, name=board.name)
 
