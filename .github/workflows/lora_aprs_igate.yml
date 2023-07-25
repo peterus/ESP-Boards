@@ -32,4 +32,4 @@ jobs:
       - name: List Devices
         run: pio device list 
       - name: PlatformIO Test
-        run: pio test -vvv --upload-port /dev/serial/by-id/$USB_ID --test-port /dev/serial/by-id/$USB_ID"
+        run: pio test -vvv --upload-port /dev/serial/by-id/$USB_ID --test-port /dev/serial/by-id/$USB_ID

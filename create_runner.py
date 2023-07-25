@@ -10,6 +10,7 @@ from pathlib import Path
 ACCESS_TOKEN = os.getenv('ACCESS_TOKEN')
 environment = ["USER=peterus", "REPOSITORY=ESP-Boards", f"ACCESS_TOKEN={ACCESS_TOKEN}"]
 volumes = ["locks:/locks", "/dev:/dev"]
+docker_image = "ghcr.io/peterus/esp-boards:main"
 
 
 class Board(object):
@@ -53,7 +54,7 @@ def create_new_docker_container(client: docker.DockerClient, board: Board) -> No
     environment_cont.append(f"RUNNER_NAME={board.name}")
     environment_cont.append(f"CPP_DEFINES={board.cpp_defines}")
     environment_cont.append(f"USB_ID={board.usb_id}")
-    container = client.containers.run("ghcr.io/peterus/esp-boards:main", detach=True,
+    container = client.containers.run(docker_image, detach=True,
                                       auto_remove=True, volumes=volumes, environment=environment_cont, name=board.name)
 
 
@@ -73,6 +74,8 @@ def main():
         exit(1)
 
     client = docker.from_env()
+    print(f"pulling latest image: '{docker_image}'")
+    client.images.pull(docker_image)
     defined_boards = get_defined_boards()
     print("Current Serial Ports:")
     for serial_port in get_current_serial_ports():
