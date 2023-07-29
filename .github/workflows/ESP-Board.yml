@@ -30,4 +30,4 @@ jobs:
         with:
           repository: 'peterus/ESPos'
       - name: PlatformIO Test
-        run: pio test -vv --upload-port /dev/ttyBoard --test-port /dev/ttyBoard
+        run: pio test -vv -e ttgo-lora32 --upload-port /dev/ttyBoard --test-port /dev/ttyBoard
