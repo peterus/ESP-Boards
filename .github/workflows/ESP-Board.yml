@@ -1,0 +1,33 @@
+name: ESP-Board
+
+on:
+  workflow_dispatch:
+
+jobs:
+  hw_testing:
+    name: Hardware Testing
+    strategy:
+      matrix:
+        boards: [TTGO_LORA32_V2]
+    runs-on: [self-hosted, "${{ matrix.boards }}"]
+    steps:
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/.platformio/.cache
+          key: hw-cache
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install PlatformIO
+        shell: bash
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade platformio
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: 'peterus/ESPos'
+      - name: PlatformIO Test
+        run: pio test -vv --upload-port /dev/ttyBoard --test-port /dev/ttyBoard
